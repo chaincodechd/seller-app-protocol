@@ -52,7 +52,7 @@ class Config:
 class DevelopmentConfig(Config):
     DEBUG = True
     ENV = True
-    RABBITMQ_HOST = "localhost"
+    RABBITMQ_HOST = os.getenv("RABBITMQ_HOST", "localhost")
     REGISTRY_BASE_URL = "https://pilot-gateway-1.beckn.nsdl.co.in"
     MONGO_DATABASE_HOST = "localhost"
     MONGO_DATABASE_PORT = 27017
@@ -61,7 +61,7 @@ class DevelopmentConfig(Config):
 
 class ProductionConfig(Config):
     DEBUG = False
-    RABBITMQ_HOST = "rabbitmq"
+    RABBITMQ_HOST = os.getenv("RABBITMQ_HOST", "rabbitmq")
     REGISTRY_BASE_URL = "https://pilot-gateway-1.beckn.nsdl.co.in"
     MONGO_DATABASE_HOST = os.getenv("MONGO_DATABASE_HOST", "mongo")
     MONGO_DATABASE_PORT = int(os.getenv("MONGO_DATABASE_PORT", 27017))
@@ -70,7 +70,7 @@ class ProductionConfig(Config):
 
 class PreProductionConfig(Config):
     DEBUG = False
-    RABBITMQ_HOST = "rabbitmq"
+    RABBITMQ_HOST = os.getenv("RABBITMQ_HOST", "rabbitmq")
     REGISTRY_BASE_URL = "https://preprod.registry.ondc.org/ondc"
     MONGO_DATABASE_HOST = os.getenv("MONGO_DATABASE_HOST", "mongo")
     MONGO_DATABASE_PORT = int(os.getenv("MONGO_DATABASE_PORT", 27017))
